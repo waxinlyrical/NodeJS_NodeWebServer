@@ -20,9 +20,10 @@ app.use( (req, res, next) => {
   next();
 } );
 
-app.use( (req, res, next) =>{
-  res.render( 'maintenance.hbs' );
-} );
+//Without the call to .next(), this skips the rest of the stuff so we only get "Down for maintenance across all pages. "
+// app.use( (req, res, next) =>{
+//   res.render( 'maintenance.hbs' );
+// } );
 
 app.use( express.static( __dirname + '/public' ) );
 
@@ -51,6 +52,13 @@ app.get( '/about', ( req, res ) => {
   // res.send( 'About Page!' );
   res.render( 'about.hbs', {
     pageTitle: 'Page of Abouts',
+  }
+);
+} );
+
+app.get( '/projects', ( req, res ) => {
+  res.render( 'projects.hbs', {
+    pageTitle: 'Projects Page',
   }
 );
 } );
